@@ -31,7 +31,7 @@ parser.add_argument('--project', '-p', required=False, action = 'store', help = 
 parser.add_argument('--env', '-e', required=False, action = 'store', help = 'MANDATORY (if you are not using --iam_master_group, --iam_policy and --iam_delegated_role): Set environment', default=False,
         choices=['dev', 'pre', 'prepro', 'pro', 'sbx', 'val', 'corp', 'qa', 'staging', 'demo', 'piloto'])
 parser.add_argument('--role', '-r', required=False, action = 'store', help = 'Set role to use', default=False,
-        choices=['developer', 'devops', 'user', 'admin', 'audit', 'contractor'])
+        choices=['developer', 'devops', 'user', 'admin', 'audit', 'contractor', 'cd'])
 parser.add_argument('--contractor', '-c', required=False, action = 'store', help = 'Set role to use with contractor policies', default=False)
 parser.add_argument('--externalid', '-ext', required=False, action = 'store', help = 'Set External-ID to use with contractor policies', default=False)
 parser.add_argument('--region', required=False, action = 'store', help = 'Set region for EC2', default=False,
@@ -363,7 +363,7 @@ def save_cli_credentials(access_key, session_key, session_token, section_name, r
         os.makedirs(basedir)
     if not os.path.isfile(home+'/.aws/credentials'):
         verbose("There is no ~/.aws/credentials (probably using an EC2 instance profile. Creating credentials file...")
-        open(home+'/.aws/credentials', 'a').close() 
+        open(home+'/.aws/credentials', 'a').close()
     config.read(os.path.expanduser('~/.aws/credentials'))
 
     if not config.has_section(section_name):
